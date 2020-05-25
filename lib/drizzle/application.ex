@@ -15,7 +15,7 @@ defmodule Drizzle.Application do
   end
 
   # List all child processes to be supervised
-  def children("host") do
+  def children(:host) do
     [
       # Starts a worker by calling: Drizzle.Worker.start_link(arg)
       # {Drizzle.Worker, arg},

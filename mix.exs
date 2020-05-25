@@ -2,7 +2,7 @@ defmodule Drizzle.MixProject do
   use Mix.Project
 
   @app :drizzle
-  @target System.get_env("MIX_TARGET") || "host"
+  @target Mix.target()
 
   def project do
     [
@@ -60,7 +60,7 @@ defmodule Drizzle.MixProject do
   end
 
   # Specify target specific dependencies
-  defp deps("host"), do: []
+  defp deps(:host), do: []
 
   defp deps(target) do
     [
@@ -72,13 +72,13 @@ defmodule Drizzle.MixProject do
     ] ++ system(target)
   end
 
-  defp system("rpi"), do: [{:nerves_system_rpi, "~> 1.8", runtime: false}]
-  defp system("rpi0"), do: [{:nerves_system_rpi0, "~> 1.8", runtime: false}]
-  defp system("rpi2"), do: [{:nerves_system_rpi2, "~> 1.8", runtime: false}]
-  defp system("rpi3"), do: [{:nerves_system_rpi3, "~> 1.8", runtime: false}]
-  defp system("bbb"), do: [{:nerves_system_bbb, "~> 2.3", runtime: false}]
-  defp system("ev3"), do: [{:nerves_system_ev3, "~> 1.8", runtime: false}]
-  defp system("qemu_arm"), do: [{:nerves_system_qemu_arm, "~> 1.8", runtime: false}]
-  defp system("x86_64"), do: [{:nerves_system_x86_64, "~> 1.8", runtime: false}]
+  defp system(:rpi), do: [{:nerves_system_rpi, "~> 1.8", runtime: false}]
+  defp system(:rpi0), do: [{:nerves_system_rpi0, "~> 1.8", runtime: false}]
+  defp system(:rpi2), do: [{:nerves_system_rpi2, "~> 1.8", runtime: false}]
+  defp system(:rpi3), do: [{:nerves_system_rpi3, "~> 1.8", runtime: false}]
+  defp system(:bbb), do: [{:nerves_system_bbb, "~> 2.3", runtime: false}]
+  defp system(:ev3), do: [{:nerves_system_ev3, "~> 1.8", runtime: false}]
+  defp system(:qemu_arm), do: [{:nerves_system_qemu_arm, "~> 1.8", runtime: false}]
+  defp system(:x86_64), do: [{:nerves_system_x86_64, "~> 1.8", runtime: false}]
   defp system(target), do: Mix.raise("Unknown MIX_TARGET: #{target}")
 end
